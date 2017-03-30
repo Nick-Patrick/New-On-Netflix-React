@@ -7,7 +7,10 @@ import {
 import styles from './styles.js';
 import Day from '../../components/Day'
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2,) => r1 !== r2 });
+const ds = new ListView.DataSource({
+  rowHasChanged: (r1, r2,) => r1 !== r2,
+  sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+});
 
 class MonthScreen extends Component {
 
@@ -16,7 +19,7 @@ class MonthScreen extends Component {
     this.days = [];
 
     this.state = {
-      daysDataSource: ds.cloneWithRows([{}])
+      daysDataSource: ds.cloneWithRowsAndSections([{}])
     };
   }
 
@@ -33,7 +36,7 @@ class MonthScreen extends Component {
     });
 
     this.setState({
-      daysDataSource: ds.cloneWithRows(this.days)
+      daysDataSource: ds.cloneWithRowsAndSections(this.days)
     });
   }
 
@@ -42,8 +45,9 @@ class MonthScreen extends Component {
       <ListView
         enableEmptySections={true}
         dataSource={this.state.daysDataSource}
-        renderHeader={(rowData) => <Text style={styles.dayHeader}>{this.props.month} {this.state.daysDataSource.day}</Text>}
-        renderRow={(rowData) => <Day month={this.props.month} day={rowData} />}
+        stickySectionHeadersEnabled={true}
+        renderSectionHeader={(sectionData) => <Text style={styles.dayHeader}>{this.props.month} {sectionData.day}</Text>}
+        renderRow={(sectionData) => <Day day={sectionData} />}
       />
     );
 

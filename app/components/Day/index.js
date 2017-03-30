@@ -27,14 +27,13 @@ class Day extends Component {
   }
 
   render() {
-    const day = this.state.day || { titles: [] };
-    const titles = _.values(day.titles).map((title, index) => {
+    const day = this.state.day || [];
+    const titles = _.values(day).map((title, index) => {
       return (<TitleListItem key={index} title={title} />);
     });
 
     return (
       <View>
-        <Text style={styles.dayHeader}>{this.props.month} {day.day}</Text>
         {titles}
       </View>
     );
