@@ -4,6 +4,7 @@ import {
   ListView
 } from 'react-native';
 
+import styles from './styles.js';
 import Day from '../../components/Day'
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2,) => r1 !== r2 });
@@ -41,6 +42,7 @@ class MonthScreen extends Component {
       <ListView
         enableEmptySections={true}
         dataSource={this.state.daysDataSource}
+        renderHeader={(rowData) => <Text style={styles.dayHeader}>{this.props.month} {this.state.daysDataSource.day}</Text>}
         renderRow={(rowData) => <Day month={this.props.month} day={rowData} />}
       />
     );

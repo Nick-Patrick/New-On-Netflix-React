@@ -3,16 +3,21 @@ import {
   View,
   Text,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  StyleSheet,
+  Button,
+  Slider
 } from 'react-native';
 
+import Modal from 'react-native-modalbox';
 import styles from './styles.js';
 
 class TitleListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: props.title
+      title: props.title,
+      isOpen: false
     };
   }
 
@@ -26,6 +31,14 @@ class TitleListItem extends Component {
     });
   }
 
+  openTitle() {
+    this.setState({isOpen: !this.state.isOpen});
+  }
+
+  closeTitle() {
+    this.setState({isOpen: false});
+  }
+
   render() {
     const title = this.state.title || {};
     const season = title.Season ? 'Season ' + title.Season  + '  -  ' : '';
@@ -33,22 +46,59 @@ class TitleListItem extends Component {
     if (!title.Title) return null;
 
     return (
-      <TouchableHighlight>
-        <View style={styles.listItem}>
-          <Image
-            style={styles.thumbnail}
-            source={{ uri: poster }}
-          />
-          <View style={styles.listItemDescription}>
-            <Text numberOfLines={1} style={styles.title}>{title.Title}</Text>
-            <Text style={styles.year}>{ season + (title.Year || '')}</Text>
-            <Text style={[styles.runtime, styles.small]}>{title.Runtime}</Text>
-            <Text style={[styles.genre, styles.small]}>{title.Genre}</Text>
+      <View>
+        <TouchableHighlight
+          onPress={() => this.openTitle()} >
+          <View style={styles.listItem}>
+            <Image
+              style={styles.thumbnail}
+              source={{ uri: poster }}
+            />
+            <View style={styles.listItemDescription}>
+              <Text numberOfLines={1} style={styles.title}>{title.Title}</Text>
+              <Text style={styles.year}>{ season + (title.Year || '')}</Text>
+              <Text style={[styles.runtime, styles.small]}>{title.Runtime}</Text>
+              <Text style={[styles.genre, styles.small]}>{title.Genre}</Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
+        </TouchableHighlight>
+
+        <Modal
+          isOpen={this.state.isOpen}
+          style={[styles2.modal, styles2.modal1]}
+          ref={"modal1"}
+          swipeToClose={false}
+          backdrop={false}>
+            <Button title="X" onPress={() => this.closeTitle()} />
+            <Text style={styles2.text}>{title.Plot.length > 8 ? title.Plot : 'No description available.'}</Text>
+            <Text style={styles2.text}>Released: {title.Released.length > 3 ? title.Released : 'Unknown'}</Text>
+        </Modal>
+      </View>
     );
   }
 }
 
 module.exports = TitleListItem;
+
+
+const styles2 = StyleSheet.create({
+
+  wrapper: {
+    paddingTop: 50,
+    flex: 1
+  },
+
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10
+  },
+
+  text: {
+    color: "black",
+    fontSize: 10,
+    paddingBottom: 6,
+    textAlign: "center"
+  }
+
+});

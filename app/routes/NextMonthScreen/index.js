@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import dateHelper from '../../lib/dateHelper';
+import FirebaseHelper from '../../lib/FirebaseHelper.js';
 
 import MonthScreen from '../MonthScreen';
 
@@ -15,6 +16,15 @@ class NextMonthScreen extends Component {
     super(props);
     this.state = {
       days: []
+    }
+  }
+
+  componentDidMount() {
+    if (!this.state.days || this.state.days.length < 2) {
+      this.itemsRef = FirebaseHelper.getItemsRef();
+      this.itemsRef.once('value', snapshot => {
+        this.setState({days: snapshot.val()[dateHelper.getNextMonthYear().toLowerCase()]});
+      });
     }
   }
 
