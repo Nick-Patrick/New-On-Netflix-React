@@ -23,9 +23,9 @@ class PreviousMonthScreen extends Component {
 
   componentDidMount() {
     setTimeout(() => {
+      this.setState({spinnerVisible: false});
       const { navigate } = this.props.navigation;
       navigate('currentMonth');
-      this.setState({spinnerVisible: false});
 
       if (!this.state.days || this.state.days.length < 2) {
         this.itemsRef = FirebaseHelper.getItemsRef();

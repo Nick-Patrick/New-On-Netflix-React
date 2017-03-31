@@ -8,6 +8,11 @@ import {
   Button
 } from 'react-native';
 
+import {
+  AdMobBanner,
+  AdMobInterstitial
+} from 'react-native-admob';
+
 import SplashScreen from 'react-native-splash-screen';
 
 import theme from '../../config/theme.js';
@@ -36,9 +41,8 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    // this.itemsRef.once('value', snapshot => {
-    //   this.setState({firebaseItems: snapshot.val()});
-    // });
+    AdMobInterstitial.setAdUnitID('ca-app-pub-3981028455625793/7422866518');
+    AdMobInterstitial.setTestDeviceID('EMULATOR');
 
     if (SplashScreen) SplashScreen.hide();
   }
@@ -56,11 +60,20 @@ class HomeScreen extends Component {
     }
   };
 
+  bannerError(e) {
+    console.log('admob error', e);
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content"/>
         <MainScreenTabNavigator screenProps={this.state.firebaseItems}/>
+        <AdMobBanner
+          bannerSize="smartBannerPortrait"
+          adUnitID="ca-app-pub-3981028455625793/5946133315"
+          testDeviceID="EMULATOR"
+          didFailToReceiveAdWithError={this.bannerError} />
       </View>
     );
   }

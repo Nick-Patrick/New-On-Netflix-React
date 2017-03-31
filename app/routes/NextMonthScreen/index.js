@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import dateHelper from '../../lib/dateHelper';
 import FirebaseHelper from '../../lib/FirebaseHelper.js';
+import {
+  AdMobInterstitial
+} from 'react-native-admob';
 
 import MonthScreen from '../MonthScreen';
 

@@ -33,6 +33,7 @@ class TitleListItem extends Component {
 
   openTitle() {
     this.setState({isOpen: !this.state.isOpen});
+    this.props.handleOnPress();
   }
 
   closeTitle() {
