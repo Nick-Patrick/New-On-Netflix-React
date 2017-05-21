@@ -41,8 +41,7 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    AdMobInterstitial.setAdUnitID('ca-app-pub-3981028455625793/7422866518');
-    AdMobInterstitial.setTestDeviceID('EMULATOR');
+    AdMobInterstitial.setAdUnitID('ca-app-pub-3981028455625793/5407639317');
 
     if (SplashScreen) SplashScreen.hide();
   }
@@ -71,8 +70,7 @@ class HomeScreen extends Component {
         <MainScreenTabNavigator screenProps={this.state.firebaseItems}/>
         <AdMobBanner
           bannerSize="smartBannerPortrait"
-          adUnitID="ca-app-pub-3981028455625793/5946133315"
-          testDeviceID="EMULATOR"
+          adUnitID="ca-app-pub-3981028455625793/3930906119"
           didFailToReceiveAdWithError={this.bannerError} />
       </View>
     );
