@@ -1,44 +1,43 @@
-package com.newonnetflix;
+package com.ionicframework.newonnetflix490142;
 
 import android.app.Application;
+import com.reactnativenavigation.NavigationApplication;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
-import com.cboy.rn.splashscreen.SplashScreenReactPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends NavigationApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
+@Override
+    public boolean isDebug() {
+        return BuildConfig.DEBUG;
     }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNAdMobPackage(),
-            new SplashScreenReactPackage()
-      );
-    }
-  };
-
-  @Override
-  public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
+ protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+        new VectorIconsPackage(),
+        new RNSpinkitPackage(),
+        new RNAdMobPackage(),
+        new RNFirebasePackage()
+    );
   }
 
   @Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
+  public List<ReactPackage> createAdditionalReactPackages() {
+    return getPackages();
   }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 }

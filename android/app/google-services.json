@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1034534497158",
+    "firebase_url": "https://newonnetflix-991e9.firebaseio.com",
+    "project_id": "newonnetflix-991e9",
+    "storage_bucket": "newonnetflix-991e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034534497158:android:899f0dd2c47ec30d",
+        "android_client_info": {
+          "package_name": "com.ionicframework.newonnetflix490142"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034534497158-3ntf4memosb3d56aqagjp07nsc4p76hj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjb2h-V3AHrk7YB5-YEsqfzKplL2CTZ4g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

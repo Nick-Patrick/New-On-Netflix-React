@@ -1,7 +1,6 @@
-import NewOnNetflix from './app/index.js';
+import React from 'react'
+import { AppRegistry } from 'react-native'
 
-import {
-  AppRegistry
-} from 'react-native';
+import Root from './src/root'
 
-AppRegistry.registerComponent('NewOnNetflix', () => NewOnNetflix);
+const app = new Root()

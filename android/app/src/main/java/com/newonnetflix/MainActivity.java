@@ -1,15 +1,29 @@
-package com.newonnetflix;
+package com.ionicframework.newonnetflix490142;
 
-import com.facebook.react.ReactActivity;
+import android.widget.LinearLayout;
+import android.graphics.Color;
+import android.widget.TextView;
+import android.view.Gravity;
+import android.util.TypedValue;
+import com.reactnativenavigation.controllers.SplashActivity;
 
-public class MainActivity extends ReactActivity {
 
-    /**
-     * Returns the name of the main component registered from JavaScript.
-     * This is used to schedule rendering of the component.
-     */
+public class MainActivity extends SplashActivity {
+
     @Override
-    protected String getMainComponentName() {
-        return "NewOnNetflix";
+    public LinearLayout createSplashLayout() {
+        LinearLayout view = new LinearLayout(this);
+        TextView textView = new TextView(this);
+
+        view.setBackgroundColor(Color.parseColor("#AA000E"));
+        view.setGravity(Gravity.CENTER);
+
+        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        textView.setText("New on Netflix");
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+
+        view.addView(textView);
+        return view;
     }
 }
